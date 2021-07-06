@@ -18,10 +18,7 @@ class LoopApi @WorkerInject constructor(
     override suspend fun doWork(): Result {
 
         withContext(Dispatchers.IO) {
-            repository.getGitRepo().onEach {
-                Log.d("HILTWORKER", "WorkManager started, loop interval is ")
-            }
-
+            repository.getGitRepoWorker()
         }
         return Result.success()
     }

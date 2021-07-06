@@ -25,7 +25,7 @@ class MainRepository @Inject constructor(
         delay(100)
         try {
             if (githubRepoDao.get().isEmpty()) {
-                Log.d("repodddddd","yes"+githubRepoDao.get().size)
+                Log.d("repodddddd", "yes" + githubRepoDao.get().size)
                 val networkGithubRepo = githubRepoRetrofit.get()
                 val githubRepos = networkMapper.mapFromEntityList(networkGithubRepo)
                 for (githubRepo in githubRepos) {
@@ -33,10 +33,10 @@ class MainRepository @Inject constructor(
                 }
                 val cacheGithubRepo = githubRepoDao.get()
                 emit(DataState.Success(cacheMapper.mapFromEntityList(cacheGithubRepo)))
-                Log.d("repoddddd","no00"+githubRepoDao.get().toString())
+                Log.d("repoddddd", "no00" + githubRepoDao.get().toString())
 
             } else {
-                Log.d("repoddddd","no"+githubRepoDao.get().toString())
+                Log.d("repoddddd", "no" + githubRepoDao.get().toString())
 
                 val cacheGithubRepo = githubRepoDao.get()
                 emit(DataState.Success(cacheMapper.mapFromEntityList(cacheGithubRepo)))
@@ -48,5 +48,22 @@ class MainRepository @Inject constructor(
 
         }
     }
+
+    suspend fun getGitRepoWorker() {
+        try {
+            Log.d("repoworker", "yes")
+            val networkGithubRepo = githubRepoRetrofit.get()
+            val githubRepos = networkMapper.mapFromEntityList(networkGithubRepo)
+            for (githubRepo in githubRepos) {
+                githubRepoDao.insert(cacheMapper.mapToEntity(githubRepo))
+            }
+            Log.d("repoworker", "no" + githubRepoDao.get().toString())
+
+        } catch (e: Exception) {
+
+        }
+
+    }
+
 
 }
