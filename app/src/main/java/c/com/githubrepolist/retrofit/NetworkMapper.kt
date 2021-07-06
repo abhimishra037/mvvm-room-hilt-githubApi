@@ -6,14 +6,13 @@ import javax.inject.Inject
 
 class NetworkMapper @Inject constructor() : EntityMapper<GithubRepoEntity, GithubRepo> {
     override fun mapFromEntity(entity: GithubRepoEntity): GithubRepo {
-        return GithubRepo(id = entity.id, name = entity.name)
+        return GithubRepo(id = entity.id, name = entity.name,language = entity.language)
     }
 
     override fun mapToEntity(domainModel: GithubRepo): GithubRepoEntity {
         return GithubRepoEntity(
             id = domainModel.id,
-            name = domainModel.name
-           // description = domainModel.description
+            name = domainModel.name,language = domainModel.language
         )
     }
 

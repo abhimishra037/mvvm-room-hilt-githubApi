@@ -11,9 +11,9 @@ data class GithubRepoCacheEntity(
     var id: Int,
 
     @ColumnInfo(name = "name")
-    var name: String
+    var name: String,
 
-   /* @ColumnInfo(name = "description")
-    var description: String*/
+    @ColumnInfo(name = "language")
+    var language: String
 ) {
 }

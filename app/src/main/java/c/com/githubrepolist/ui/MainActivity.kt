@@ -98,8 +98,9 @@ class MainActivity : AppCompatActivity(), GithubRepoListAdapter.ItemClickListene
         WorkManager.getInstance(applicationContext).enqueue(request)
     }
 
-    override fun onItemClick(name: String, url: String) {
+    override fun onItemClick(name: String, lang: String) {
         val intent = Intent(this, SecondActivity::class.java)
+        intent.putExtra("lang", lang)
         startActivity(intent)
     }
 }

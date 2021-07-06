@@ -11,10 +11,10 @@ data class GithubRepoEntity(
 
     @SerializedName("name")
     @Expose
-    var name: String
+    var name: String,
 
-   /* @SerializedName("description")
+    @SerializedName("language")
     @Expose
-    var description: String*/
+    var language: String
 ) {
 }

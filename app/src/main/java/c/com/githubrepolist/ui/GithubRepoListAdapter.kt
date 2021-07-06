@@ -1,5 +1,6 @@
 package c.com.githubrepolist.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,18 +15,19 @@ class GithubRepoListAdapter(
 
 
     interface ItemClickListener {
-        fun onItemClick(name: String, url: String)
+        fun onItemClick(name: String, lang: String)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var textView: TextView = view.findViewById(R.id.txtMovieTitle)
         fun bind(
             repoName: String,
-            listener: ItemClickListener
+            listener: ItemClickListener,
+            language: String
         ) {
 
             textView.setOnClickListener {
-                listener.onItemClick(repoName, "")
+                listener.onItemClick(repoName, language)
             }
 
         }
@@ -44,7 +46,7 @@ class GithubRepoListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = repoList[position].name
-        holder.bind(repoList[position].name, listener)
+        holder.bind(repoList[position].name, listener,repoList[position].language)
 
 
     }

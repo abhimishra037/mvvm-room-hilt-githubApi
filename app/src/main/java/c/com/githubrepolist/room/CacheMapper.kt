@@ -7,14 +7,14 @@ import javax.inject.Inject
 class CacheMapper @Inject constructor() : EntityMapper<GithubRepoCacheEntity, GithubRepo> {
     override fun mapFromEntity(entity: GithubRepoCacheEntity): GithubRepo {
 
-        return GithubRepo(id = entity.id, name = entity.name)
+        return GithubRepo(id = entity.id, name = entity.name, language = entity.language)
     }
 
     override fun mapToEntity(domainModel: GithubRepo): GithubRepoCacheEntity {
         return GithubRepoCacheEntity(
             id = domainModel.id,
-            name = domainModel.name
-          //  description = domainModel.description
+            name = domainModel.name,
+            language = domainModel.language
         )
     }
 
